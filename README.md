@@ -1,16 +1,53 @@
-Sati utilities
-================
+Sati Bot — ผู้ช่วยบันทึกสติและสมาธิผ่าน Telegram
+=================================================
 
-New command: decode-and-merge
------------------------------
+Sati Bot คือบอท Telegram สำหรับบันทึกเหตุการณ์ที่กระทบใจและการฝึกสมาธิ พร้อมสรุปสถิติและคำสอนจาก AI (Gemini) เพื่อช่วยให้คุณฝึกสติและเข้าใจตัวเองมากขึ้น
 
-This command extracts a ZIP file containing PDFs (some may be password-protected), attempts to decrypt each PDF with the supplied password, and merges all readable pages into a single output PDF.
+ฟีเจอร์หลัก
+------------
+- บันทึกเหตุการณ์ที่ไม่พอใจ (พร้อมแท็ก, คะแนน, เหตุผล, ปฏิกิริยา)
+- บันทึกการนั่งสมาธิ (ระยะเวลา, ประเภท, หมายเหตุ)
+- สรุปสถิติรายวัน/สัปดาห์/เดือน
+- ส่งออกข้อมูลเป็นไฟล์ CSV
+- ขอคำสอน/ข้อคิดจาก AI (Gemini) สั้น ๆ
+- สมัครรับสรุปอัตโนมัติผ่าน Telegram
 
-Example:
+วิธีใช้งาน
+----------
+1. ตั้งค่าไฟล์ `.env` ด้วย BOT_TOKEN และ GEMINI_API_KEY
+2. ติดตั้ง dependencies ด้วยคำสั่ง:
+    ```
+    pip install -r [requirements.txt](http://_vscodecontentref_/0)
+    ```
+3. เริ่มบอทด้วยคำสั่ง:
+    ```
+    bash [start_bot.sh](http://_vscodecontentref_/1)
+    ```
+4. เพิ่มบอทใน Telegram แล้วเริ่มใช้งานด้วยคำสั่ง เช่น `/log`, `/meditation`, `/today`, `/weekly`, `/monthly`
 
-	sati decode-and-merge --zip /path/to/files.zip --password mypass --output /path/to/merged.pdf
+คำสั่งที่ใช้บ่อย
+-----------------
+- `/log` : บันทึกเหตุการณ์ที่ไม่พอใจ
+- `/meditation` : บันทึกการนั่งสมาธิ
+- `/today` : สรุปเหตุการณ์วันนี้
+- `/weekly` : สรุปเหตุการณ์ 7 วันย้อนหลัง
+- `/monthly` : สรุปเหตุการณ์ 30 วันย้อนหลัง
+- `/export` : ส่งออกไฟล์ CSV
+- `/subscribe_daily` : สมัครรับสรุปอัตโนมัติ
+- `/unsubscribe` : ยกเลิกสรุปอัตโนมัติ
+- `/undo` : ลบรายการล่าสุดของคุณ
 
-Notes:
-• If a PDF cannot be decrypted with the provided password it will be skipped.
-• Files are merged in filename order.
-# Sati
+ไฟล์ข้อมูล
+----------
+- `sati_logs.csv` : บันทึกเหตุการณ์
+- `meditations.csv` : บันทึกสมาธิ
+- `reflections.txt` : ข้อคิด/คำสอนจาก AI
+
+หมายเหตุ
+--------
+- หากไม่มี API Key สำหรับ Gemini จะใช้ข้อความสะท้อนสำรอง
+- รองรับ Python 3.13 ขึ้นไป
+
+ติดต่อ/แจ้งปัญหา
+-----------------
+สามารถติดต่อผู้ดูแลหรือแจ้งปัญหาผ่าน Telegram หรือ GitHub repository
